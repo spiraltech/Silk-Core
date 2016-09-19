@@ -5,8 +5,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef NAMECOIN_H
-#define NAMECOIN_H
+#ifndef DNS_H
+#define DNS_H
 
 #include "db.h"
 #include "base58.h"
@@ -136,4 +136,4 @@ struct nameTempProxy
     CNameIndex ind;
 };
 
-#endif
+#endif // DNS_H
