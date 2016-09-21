@@ -1365,11 +1365,16 @@ bool AppInit2(boost::thread_group& threadGroup)
 #ifdef ENABLE_WALLET
     // InitRPCMining is needed here so getwork/getblocktemplate in the GUI debug console works properly.       
     InitRPCMining();
+#endif
+
+#ifdef ENABLE_WALLET
     // Generate coins in the background
-    if (pwalletMain)
+    if (GetBoolArg("-staking", false))
+        LogPrintf("Staking disabled\n");
+    else if (pwalletMain) {
         GenerateSilks(GetBoolArg("-gen", false), pwalletMain, GetArg("-genproclimit", 1));
-    if (GetBoolArg("-stakegen", true))
         MintStake(threadGroup, pwalletMain);
+    }
 #endif
 
     // ********************************************************* Step 11: finished
