@@ -1,5 +1,5 @@
 ---
-name: "silk-osx-0.5"
+name: "silk-osx-1.0.1.0"
 enable_cache: true
 suites:
 - "trusty"
@@ -18,10 +18,10 @@ packages:
 - "libcap-dev"
 - "libz-dev"
 - "libbz2-dev"
-reference_datetime: "2016-01-01 00:00:00"
+reference_datetime: "2016-09-23 00:00:00"
 remotes:
-- "url": "https://github.com/Silk/silk.git"
-  "dir": "silk"
+- "url": "https://github.com/silknetwork/silk-core.git"
+  "dir": "silk-core"
 files:
 - "MacOSX10.7.sdk.tar.gz"
 script: |
