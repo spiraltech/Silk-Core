@@ -621,7 +621,7 @@ QVariant TransactionTableModel::data(const QModelIndex &index, int role) const
                 details.append(QString::fromStdString(rec->address));
                 details.append(" ");
             }
-            details.append(formatTxAmount(rec, false, BitcoinUnits::separatorNever));
+            details.append(formatTxAmount(rec, false, SilkUnits::separatorNever));
             return details;
         }
     case ConfirmedRole:
