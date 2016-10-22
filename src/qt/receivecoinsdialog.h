@@ -60,6 +60,7 @@ private:
     GUIUtil::TableViewLastColumnResizingFixer *columnResizingFixer;
     WalletModel *model;
     QMenu *contextMenu;
+    QModelIndex selectedRow();
     void copyColumnToClipboard(int column);
     virtual void resizeEvent(QResizeEvent *event);
 
@@ -72,6 +73,7 @@ private slots:
     void updateDisplayUnit();
     void showMenu(const QPoint &point);
     void copyAddress();
+    void copyURI();
     void copyLabel();
     void copyMessage();
     void copyAmount();
