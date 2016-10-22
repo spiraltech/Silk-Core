@@ -125,6 +125,7 @@ private:
     ClientModel *clientModel;
     QStringList history;
     int historyPtr;
+    QString cmdBeforeBrowsing;
     NodeId cachedNodeid;
     QCompleter *autoCompleter;
 };
