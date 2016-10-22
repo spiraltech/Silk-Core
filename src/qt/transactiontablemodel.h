@@ -61,6 +61,8 @@ public:
         TxIDRole,
         /** Transaction hash */
         TxHashRole,
+        /** Whole transaction as plain text */
+        TxPlainTextRole,
         /** Is transaction confirmed? */
         ConfirmedRole,
         /** Formatted amount, without brackets when unconfirmed */

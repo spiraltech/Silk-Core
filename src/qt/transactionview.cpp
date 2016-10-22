@@ -143,6 +143,7 @@ TransactionView::TransactionView(QWidget *parent) :
     QAction *copyLabelAction = new QAction(tr("Copy label"), this);
     QAction *copyAmountAction = new QAction(tr("Copy amount"), this);
     QAction *copyTxIDAction = new QAction(tr("Copy transaction ID"), this);
+    QAction *copyTxPlainText = new QAction(tr("Copy full transaction details"), this);
     QAction *editLabelAction = new QAction(tr("Edit label"), this);
     QAction *showDetailsAction = new QAction(tr("Show transaction details"), this);
 
@@ -151,6 +152,7 @@ TransactionView::TransactionView(QWidget *parent) :
     contextMenu->addAction(copyLabelAction);
     contextMenu->addAction(copyAmountAction);
     contextMenu->addAction(copyTxIDAction);
+    contextMenu->addAction(copyTxPlainText);
     contextMenu->addAction(editLabelAction);
     contextMenu->addAction(showDetailsAction);
 
@@ -172,6 +174,7 @@ TransactionView::TransactionView(QWidget *parent) :
     connect(copyLabelAction, SIGNAL(triggered()), this, SLOT(copyLabel()));
     connect(copyAmountAction, SIGNAL(triggered()), this, SLOT(copyAmount()));
     connect(copyTxIDAction, SIGNAL(triggered()), this, SLOT(copyTxID()));
+    connect(copyTxPlainText, SIGNAL(triggered()), this, SLOT(copyTxPlainText()));
     connect(editLabelAction, SIGNAL(triggered()), this, SLOT(editLabel()));
     connect(showDetailsAction, SIGNAL(triggered()), this, SLOT(showDetails()));
 }
@@ -382,6 +385,11 @@ void TransactionView::copyTxID()
     GUIUtil::copyEntryData(transactionView, 0, TransactionTableModel::TxIDRole);
 }
 
+void TransactionView::copyTxPlainText()
+{
+    GUIUtil::copyEntryData(transactionView, 0, TransactionTableModel::TxPlainTextRole);
+}
+
 void TransactionView::editLabel()
 {
     if(!transactionView->selectionModel() ||!model)
@@ -521,12 +529,8 @@ bool TransactionView::eventFilter(QObject *obj, QEvent *event)
         QKeyEvent *ke = static_cast<QKeyEvent *>(event);
         if (ke->key() == Qt::Key_C && ke->modifiers().testFlag(Qt::ControlModifier))
         {
-            QModelIndex i = this->transactionView->currentIndex();
-            if (i.isValid() && i.column() == TransactionTableModel::Amount)
-            {
-                 GUIUtil::setClipboard(i.data(TransactionTableModel::FormattedAmountRole).toString());
-                 return true;
-            }
+             GUIUtil::copyEntryData(transactionView, 0, TransactionTableModel::TxPlainTextRole);
+             return true;
         }
     }
     return QWidget::eventFilter(obj, event);

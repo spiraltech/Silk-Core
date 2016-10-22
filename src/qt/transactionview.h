@@ -94,6 +94,7 @@ private slots:
     void copyLabel();
     void copyAmount();
     void copyTxID();
+    void copyTxPlainText();
     void openThirdPartyTxUrl(QString url);
     void updateWatchOnlyColumn(bool fHaveWatchOnly);
 
